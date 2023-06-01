@@ -60,7 +60,7 @@ export default function SignInUpPage(props) {
                         <input type="url" placeholder="foto" value={image} onChange={e => setImage(e.target.value)} disabled={disable}/>
                     </>
                     : ""}
-                {props.pageType === "register" ? 
+                {props.pageType === "login" ? 
                     <button type="submit" disabled={disable}>{ disable ? 
                         <ThreeDots
                         height="13"
@@ -69,11 +69,9 @@ export default function SignInUpPage(props) {
                         wrapperStyle
                         wrapperClass
                       />
-                     : "Cadastrar"} </button>
+                     : "Entrar"} </button>
                      : 
-                    <button type="submit" disabled={disable}>{ disable ? 
-                    ""
-                     : "Entrar"}</button>}
+                    <button type="submit" disabled={disable}>Cadastrar</button>}
                 {props.pageType === "register" ? 
                 <Link to="/">
                 <SCLink>Já tem uma conta? Faça login!</SCLink>
