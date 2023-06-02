@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
 		font-family: 'Lexend Deca', sans-serif;
 		font-style: normal;
 		font-weight: 400;
+		box-sizing: border-box;
 	}
 	
 	button {

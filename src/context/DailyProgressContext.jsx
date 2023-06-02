@@ -1,3 +1,5 @@
 import { createContext } from "react";
 
-export const DailyProgressContext = createContext(0);
+const DailyProgressContext = createContext([0, () => {}]);
+
+export default DailyProgressContext;

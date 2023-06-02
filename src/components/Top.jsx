@@ -1,10 +1,15 @@
+import { useContext } from "react";
 import styled from "styled-components"
+import AuthContext from "../context/AuthContext";
 
 export default function Top() {
+
+    const [user, setUser] = useContext(AuthContext);
+
     return(
         <SCTop>
             <h1>TrackIt</h1>
-            <img src="https://ionicframework.com/docs/img/demos/avatar.svg"/>
+            <img src={user.image}/>
         </SCTop>
     )
 }

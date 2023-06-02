@@ -1,9 +1,10 @@
 import logo from "../assets/logo.png"
 import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import axios from 'axios'
-import { Audio, ThreeDots } from  'react-loader-spinner'
+import { ThreeDots } from  'react-loader-spinner'
+import AuthContext from "../context/AuthContext"
 
 export default function SignInUpPage(props) {
     const [email, setEmail] = useState("");
@@ -13,6 +14,7 @@ export default function SignInUpPage(props) {
     const [disable, setDisable] = useState(false);
     const registerURL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up";
     const loginURL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login";
+    const [user, setUser] = useContext(AuthContext);
     const navigate = useNavigate();
 
     function login(e) {
@@ -27,10 +29,14 @@ export default function SignInUpPage(props) {
             alert(error.response.data.message);
             setDisable(false);
         });
-        promise.then(() => navigate("/hoje"));
+        promise.then((response) => {
+            navigate("/hoje");
+            console.log(response.data);
+            setUser(response.data);
+        });
     }
 
-    function register(e) {
+    function register(e) {                                             
         e.preventDefault();
         const promise = axios.post(registerURL,
             {
@@ -46,7 +52,6 @@ export default function SignInUpPage(props) {
         });
         promise.then(() => navigate("/"));
     }
-
 
     return(
         <SCLoginPage>
@@ -66,8 +71,6 @@ export default function SignInUpPage(props) {
                         height="13"
                         color="white"
                         ariaLabel="loading"
-                        wrapperStyle
-                        wrapperClass
                       />
                      : "Entrar"} </button>
                      : 
