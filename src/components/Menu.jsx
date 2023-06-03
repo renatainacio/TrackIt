@@ -23,7 +23,8 @@ const SCBottom = styled.div`
     height: 70px;
     background: #FFFFFF;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 25px;
 `
 
 const SCMenu = styled.div`
@@ -37,6 +38,9 @@ const SCButtonWhite = styled.button`
     font-size: 18px;
     line-height: 22px;
     color: #52B6FF;
+    margin-bottom: 0;
+    height: auto;
+    text-align: center;
 `
 
 const SCButtonCircle = styled.button`
@@ -46,6 +50,7 @@ const SCButtonCircle = styled.button`
     background: #52B6FF;
     font-size: 18px;
     position: fixed;
+    margin-bottom: 0px;
     bottom: 10px;
     z-index: 2;
 `
