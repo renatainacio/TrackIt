@@ -7,9 +7,9 @@ export default function Top() {
     const [user, setUser] = useContext(AuthContext);
 
     return(
-        <SCTop>
+        <SCTop data-test="header">
             <h1>TrackIt</h1>
-            <img src={user.image}/>
+            <img src={user.image} data-test="avatar"/>
         </SCTop>
     )
 }

@@ -57,16 +57,16 @@ export default function SignInUpPage(props) {
         <SCLoginPage>
             <img src={logo}/>
             <SCForm onSubmit={props.pageType === "register" ? register : login}>
-                <input type="email" placeholder="email" value={email} onChange={e => setEmail(e.target.value)} disabled={disable}/>
-                <input type="password" placeholder="senha" value={password} onChange={e => setPassword(e.target.value)} disabled={disable}/>
+                <input type="email" placeholder="email" value={email} onChange={e => setEmail(e.target.value)} disabled={disable} data-test="email-input"/>
+                <input type="password" placeholder="senha" value={password} onChange={e => setPassword(e.target.value)} disabled={disable} data-test="password-input"/>
                 {props.pageType === "register" ? 
                     <>
-                        <input type="text" placeholder="nome" value={name} onChange={e => setName(e.target.value)} disabled={disable}/>
-                        <input type="url" placeholder="foto" value={image} onChange={e => setImage(e.target.value)} disabled={disable}/>
+                        <input type="text" placeholder="nome" value={name} onChange={e => setName(e.target.value)} disabled={disable} data-test="user-name-input"/>
+                        <input type="url" placeholder="foto" value={image} onChange={e => setImage(e.target.value)} disabled={disable} data-test="user-image-input"/>
                     </>
                     : ""}
                 {props.pageType === "login" ? 
-                    <button type="submit" disabled={disable}>{ disable ? 
+                    <button type="submit" disabled={disable} data-test="login-btn">{ disable ? 
                         <ThreeDots
                         height="13"
                         color="white"
@@ -74,13 +74,13 @@ export default function SignInUpPage(props) {
                       />
                      : "Entrar"} </button>
                      : 
-                    <button type="submit" disabled={disable}>Cadastrar</button>}
+                    <button type="submit" disabled={disable} data-test="signup-btn">Cadastrar</button>}
                 {props.pageType === "register" ? 
-                <Link to="/">
+                <Link to="/" data-test="login-link">
                 <SCLink>Já tem uma conta? Faça login!</SCLink>
                 </Link>
                 : 
-                <Link to="/cadastro">
+                <Link to="/cadastro" data-test="signup-link">
                     <SCLink>Não tem uma conta? Cadastre-se!</SCLink>
                 </Link>}
                 

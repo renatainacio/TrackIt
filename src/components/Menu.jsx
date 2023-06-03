@@ -5,11 +5,11 @@ export default function Menu() {
     const navigate = useNavigate();
 
     return (
-        <SCMenu>
-            <SCButtonCircle onClick={() => navigate("/hoje")}>Hoje</SCButtonCircle>
+        <SCMenu data-test="menu">
+            <SCButtonCircle onClick={() => navigate("/hoje")} data-test="today-link">Hoje</SCButtonCircle>
             <SCBottom>
-                <SCButtonWhite onClick={() => navigate("/habitos")}>Hábitos</SCButtonWhite>
-                <SCButtonWhite onClick={() => navigate("/historico")}>Histórico</SCButtonWhite>
+                <SCButtonWhite onClick={() => navigate("/habitos")} data-test="habit-link">Hábitos</SCButtonWhite>
+                <SCButtonWhite onClick={() => navigate("/historico")} data-test="history-link">Histórico</SCButtonWhite>
             </SCBottom>
         </SCMenu>
     )
