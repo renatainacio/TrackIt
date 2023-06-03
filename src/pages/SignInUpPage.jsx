@@ -74,7 +74,13 @@ export default function SignInUpPage(props) {
                       />
                      : "Entrar"} </button>
                      : 
-                    <button type="submit" disabled={disable} data-test="signup-btn">Cadastrar</button>}
+                    <button type="submit" disabled={disable} data-test="signup-btn">{ disable ? 
+                        <ThreeDots
+                        height="13"
+                        color="white"
+                        ariaLabel="loading"
+                      />
+                     : "Cadastrar"}</button>}
                 {props.pageType === "register" ? 
                 <Link to="/" data-test="login-link">
                 <SCLink>Já tem uma conta? Faça login!</SCLink>
