@@ -38,6 +38,7 @@ const GlobalStyle = createGlobalStyle`
 		line-height: 25px;
 		display: flex;
 		align-items: center;
+		color: #666666;
 		&:disabled {
 			background: #F2F2F2;
 		}
@@ -45,6 +46,30 @@ const GlobalStyle = createGlobalStyle`
 			color: #DBDBDB;
 		}
 		
+	}
+
+	h1 {
+		font-size: 23px;
+		line-height: 29px;
+		color: #126BA5;
+	}
+
+	h2 {
+		font-size: 18px;
+		line-height: 22px;
+		color: #BABABA;
+	}
+
+	h3 {
+		font-size: 20px;
+		line-height: 25px;
+		color: #666666;
+	}
+	
+	p {
+		font-size: 13px;
+		line-height: 16px;
+		color: #666666;
 	}
 `
 
