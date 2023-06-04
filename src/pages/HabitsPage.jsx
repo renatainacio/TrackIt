@@ -8,6 +8,7 @@ import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { ThreeDots } from  'react-loader-spinner';
 
 export default function HabitsPage() {
     const navigate = useNavigate();
@@ -103,7 +104,16 @@ export default function HabitsPage() {
                         </SCDaysOfWeek>
                     <SCNewHabitButtons>
                         <SCHabitButton type="reset" btn="cancel" onClick={() => {setNewHabit(false)}}>Cancelar</SCHabitButton>
-                        <SCHabitButton btn="save">Salvar</SCHabitButton>
+                        <SCHabitButton btn="save" disabled={loading}>
+                            {loading ? 
+                            <ThreeDots
+                            height="10"
+                            color="white"
+                            ariaLabel="loading"
+                            />
+                            : "Salvar"
+                            }
+                        </SCHabitButton>
                     </SCNewHabitButtons>
                     </SCNewHabitForm>
                     : ""
