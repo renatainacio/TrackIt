@@ -16,6 +16,7 @@ export default function HabitsPage() {
     const [habitDescription, setHabitDescription] = useState("");
     const [user, setUser] = useContext(AuthContext);
     const [habits, setHabits] = useState([]);
+    const [loading, setLoading] = useState(false);
     const daysOfWeek = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
     const [selectedDays, setSelectedDays] = useState([]);
     const URLNewHabit = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
@@ -69,11 +70,19 @@ export default function HabitsPage() {
             days: selectedDays
         };
         const promise = axios.post(URLNewHabit, habit, config);
+        setLoading(true);
         promise.then(response => {
             console.log(response);
             setLoadHabits(loadHabits + 1);
+            setLoading(false);
+            setNewHabit(false);
+            setHabitDescription("");
+            setSelectedDays([]);
         });
-        promise.catch(error => console.log(error.response.data));
+        promise.catch(error => {
+            alert(error.response.data.message);
+            setLoading(false);
+        });
     }
 
     return(
@@ -86,11 +95,11 @@ export default function HabitsPage() {
                 </SCMyHabits>
                 {newHabit ? 
                     <SCNewHabitForm onSubmit={createNewHabit}>
-                        <input type="text" value={habitDescription} onChange={e => setHabitDescription(e.target.value)} placeholder="nome do hábito"/>
+                        <input type="text" value={habitDescription} onChange={e => setHabitDescription(e.target.value)} placeholder="nome do hábito" disabled={loading}/>
                         <SCDaysOfWeek>
                             {daysOfWeek.map((dow, index) => <SCDoW key={index} type="button" onClick={() => {
-                                !selectedDays.includes(index) ? setSelectedDays([...selectedDays, index]) : setSelectedDays(selectedDays.filter((day) => day === index));
-                                }} selected={selectedDays.includes(index)}>{dow}</SCDoW>)}
+                                !selectedDays.includes(index) ? setSelectedDays([...selectedDays, index]) : setSelectedDays(selectedDays.filter((day) => day !== index));
+                                }} selected={selectedDays.includes(index)} disabled={loading}>{dow}</SCDoW>)}
                         </SCDaysOfWeek>
                     <SCNewHabitButtons>
                         <SCHabitButton type="reset" btn="cancel" onClick={() => {setNewHabit(false)}}>Cancelar</SCHabitButton>
