@@ -150,6 +150,7 @@ const SCMyHabits = styled.div`
 const SCNewHabitForm = styled.form`
     background-color: white;
     padding: 15px 16px;
+    margin-bottom: 10px;
 `
 
 const SCDaysOfWeek = styled.div`
@@ -204,6 +205,6 @@ const SCHabitHeader = styled.div`
 const SCHabitItem = styled.div`
     background-color: white;
     padding: 15px 16px;
-    margin-top: 10px;
+    margin-bottom: 10px;
     height: 91px;
 `

@@ -58,6 +58,7 @@ const GlobalStyle = createGlobalStyle`
 		font-size: 18px;
 		line-height: 22px;
 		color: #BABABA;
+		margin-bottom: 28px;
 	}
 
 	h3 {
