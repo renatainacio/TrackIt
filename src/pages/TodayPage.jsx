@@ -106,6 +106,7 @@ const SCMarkButton = styled.button`
         font-weight: 900;
         --ionicon-stroke-width: 75px;
     }
+    color: #FFFFFF;
 `;
 
 const SCTodayHeader = styled.div`

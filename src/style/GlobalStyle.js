@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
 		font-size: 21px;
 		line-height: 26px;
 		text-align: center;
-		color: #FFFFFF;
+		/* color: #FFFFFF; */
 		margin-bottom: 25px;
 		display: flex;
 		justify-content: center;
