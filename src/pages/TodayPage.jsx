@@ -28,25 +28,34 @@ export default function TodayPage() {
             setTodayHabits(response.data);
         });
         promise.catch((error) => console.log(error.response.data.message));
-    } , []);
+    } , [loadHabits]);
 
 
     function markAsDone(habit) {
-        console.log("marcar como feito");
+        let action = "check";
+        if(habit.done) {
+            action = "uncheck";
+        }
+        console.log(config);
+        const promise = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/${action}`, {}, config);
+        promise.then((response) => setLoadHabits(loadHabits + 1));
+        promise.catch((error) => alert(error.response.data.message));
     }
 
     return(
         <>
             <Top />
             <SCContent>
-                <h1>{dayOfWeek[dayjs().day()]}, {dayjs().format('DD/MM')}</h1>
-                <h2>Nenhum hábito concluído ainda</h2>
+                <SCTodayHeader>
+                    <h1>{dayOfWeek[dayjs().day()]}, {dayjs().format('DD/MM')}</h1>
+                    <h2>Nenhum hábito concluído ainda</h2>
+                </SCTodayHeader>
                 {todayHabits.map((habit) => 
                 <SCTodayHabit key={habit.id}>
                     <SCHabitDetails>
                         <h3>{habit.name}</h3>
-                        <p>Sequência atual: {habit.currentSequence} dias</p>
-                        <p>Seu recorde: {habit.highestSequence} dias</p>
+                        <p>Sequência atual: <SCDays highlight={habit.done}>{habit.currentSequence} dias</SCDays></p>
+                        <p>Seu recorde: <SCDays highlight={habit.highestSequence === habit.currentSequence && habit.highestSequence !== 0}>{habit.highestSequence} dias</SCDays></p>
                     </SCHabitDetails>
                     <SCMarkButton onClick={() => markAsDone(habit)} done={habit.done}><ion-icon name="checkmark-outline"></ion-icon></SCMarkButton>
                 </SCTodayHabit>
@@ -75,6 +84,9 @@ const SCHabitDetails = styled.div`
     h3 {
         font-size: 20px;
     }
+    p {
+        color: #666666;
+    }
 `;
 
 const SCMarkButton = styled.button`
@@ -88,4 +100,16 @@ const SCMarkButton = styled.button`
         font-weight: 900;
         --ionicon-stroke-width: 75px;
     }
+`;
+
+const SCTodayHeader = styled.div`
+    h2 {
+        font-size: 18px;
+        line-height: 22px;
+        color: #BABABA;
+    }
 `
+
+const SCDays = styled.span`
+    color: ${props => props.highlight ? "#8FC549" : "#666666"};
+`;

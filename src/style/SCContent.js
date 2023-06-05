@@ -4,7 +4,7 @@ const SCContent = styled.div`
     background-color: #E5E5E5;
     margin-top: 70px;
     margin-bottom: 70px;
-    height: calc(100vh - 140px);
+    height: 100vh; */
     width: 100%;
     font-family: 'Lexend Deca';
     font-style: normal;
