@@ -83,7 +83,7 @@ export default function HistoryPage() {
             <SCContent>
                 <h1>Histórico</h1>
                 <SCHistory>
-                    <Calendar calendarType="US" tileClassName={calendarStyle} onClickDay={clickDay} />
+                    <Calendar calendarType="US" tileClassName={calendarStyle} onClickDay={clickDay} data-test="calendar"/>
                 </SCHistory>
                 {showDetails ? <h2>{date}</h2> : ""}
                 {showDetails && ((daySelected[0] && daySelected[0].length === 0) || !(daySelected[0])) ? <p>Nenhum hábito para este dia!</p> : ""}
