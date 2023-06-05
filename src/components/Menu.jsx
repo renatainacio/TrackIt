@@ -1,12 +1,24 @@
-import { useNavigate } from "react-router-dom"
-import styled from "styled-components"
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import { useContext } from "react";
+import DailyProgressContext from "../context/DailyProgressContext";
 
 export default function Menu() {
     const navigate = useNavigate();
+    const [dailyProgress, setDailyProgress] = useContext(DailyProgressContext);
 
     return (
         <SCMenu data-test="menu">
-            <SCButtonCircle onClick={() => navigate("/hoje")} data-test="today-link">Hoje</SCButtonCircle>
+            <SCButtonCircle onClick={() => navigate("/hoje")} data-test="today-link"><CircularProgressbar value={dailyProgress * 100} text="Hoje" styles={
+                buildStyles({
+                    textSize: '22px',
+                    trailColor: '#52B6FF',
+                    textColor: '#FFFFFF',
+                    backgroundColor: '#52B6FF',
+                    pathColor: `#FFFFFF`,
+                })}/></SCButtonCircle>
             <SCBottom>
                 <SCButtonWhite onClick={() => navigate("/habitos")} data-test="habit-link">Hábitos</SCButtonWhite>
                 <SCButtonWhite onClick={() => navigate("/historico")} data-test="history-link">Histórico</SCButtonWhite>
@@ -47,8 +59,6 @@ const SCButtonCircle = styled.button`
     width: 91px;
     height: 91px;
     border-radius: 91px;
-    background: #52B6FF;
-    font-size: 18px;
     position: fixed;
     margin-bottom: 0px;
     bottom: 10px;

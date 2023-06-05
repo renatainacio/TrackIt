@@ -92,19 +92,19 @@ export default function HabitsPage() {
             <SCContent>
                 <SCMyHabits>
                     <h1>Meus hábitos</h1>
-                    <button type="button" onClick={() => {setNewHabit(true)}}>+</button>
+                    <button type="button" onClick={() => {setNewHabit(true)}} data-test="habit-create-btn">+</button>
                 </SCMyHabits>
                 {newHabit ? 
-                    <SCNewHabitForm onSubmit={createNewHabit}>
-                        <input type="text" value={habitDescription} onChange={e => setHabitDescription(e.target.value)} placeholder="nome do hábito" disabled={loading}/>
+                    <SCNewHabitForm onSubmit={createNewHabit} data-test="habit-create-container">
+                        <input type="text" value={habitDescription} onChange={e => setHabitDescription(e.target.value)} placeholder="nome do hábito" disabled={loading} data-test="habit-name-input"/>
                         <SCDaysOfWeek>
                             {daysOfWeek.map((dow, index) => <SCDoW key={index} type="button" onClick={() => {
                                 !selectedDays.includes(index) ? setSelectedDays([...selectedDays, index]) : setSelectedDays(selectedDays.filter((day) => day !== index));
-                                }} selected={selectedDays.includes(index)} disabled={loading}>{dow}</SCDoW>)}
+                                }} selected={selectedDays.includes(index)} disabled={loading} data-test="habit-day">{dow}</SCDoW>)}
                         </SCDaysOfWeek>
                     <SCNewHabitButtons>
-                        <SCHabitButton type="reset" btn="cancel" onClick={() => {setNewHabit(false)}}>Cancelar</SCHabitButton>
-                        <SCHabitButton btn="save" disabled={loading}>
+                        <SCHabitButton type="reset" btn="cancel" onClick={() => {setNewHabit(false)}} data-test="habit-create-cancel-btn">Cancelar</SCHabitButton>
+                        <SCHabitButton btn="save" disabled={loading} data-test="habit-create-save-btn">
                             {loading ? 
                             <ThreeDots
                             height="10"
@@ -120,7 +120,7 @@ export default function HabitsPage() {
                 }
                 {habits.length === 0 ? <SCNoHabit>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</SCNoHabit> : 
                     habits.map((habit) => 
-                    <SCHabitItem key={habit.id}>
+                    <SCHabitItem key={habit.id} data-test="habit-container">
                         <SCHabitHeader>
                             <h3>{habit.name}</h3>
                             <ion-icon name="trash-outline" onClick={() => confirmDeletion(habit)}></ion-icon>

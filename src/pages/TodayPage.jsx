@@ -8,11 +8,13 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useState } from "react";
 import styled from "styled-components";
+import DailyProgressContext from "../context/DailyProgressContext";
 
 export default function TodayPage() {
     const dayOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
     const getTodayHabitsURL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today";
     const [user, setUser] = useContext(AuthContext);
+    const [dailyProgress, setDailyProgress] = useContext(DailyProgressContext);
     const [todayHabits, setTodayHabits] = useState([]);
     const [loadHabits, setLoadHabits] = useState(0);
     const config = {
@@ -26,6 +28,7 @@ export default function TodayPage() {
         promise.then((response) => {
             console.log(response.data);
             setTodayHabits(response.data);
+            setDailyProgress(response.data.filter((habit) => habit.done).length / response.data.length);
         });
         promise.catch((error) => console.log(error.response.data.message));
     } , [loadHabits]);
@@ -48,7 +51,10 @@ export default function TodayPage() {
             <SCContent>
                 <SCTodayHeader>
                     <h1>{dayOfWeek[dayjs().day()]}, {dayjs().format('DD/MM')}</h1>
-                    <h2>Nenhum hábito concluído ainda</h2>
+                    {dailyProgress === 0 ? 
+                    <h2>Nenhum hábito concluído ainda</h2> :
+                    <h2>{Math.round(dailyProgress * 100, 0)}% dos hábitos concluídos</h2>
+                    }
                 </SCTodayHeader>
                 {todayHabits.map((habit) => 
                 <SCTodayHabit key={habit.id}>
