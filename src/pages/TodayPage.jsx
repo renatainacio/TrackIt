@@ -28,7 +28,7 @@ export default function TodayPage() {
         promise.then((response) => {
             console.log(response.data);
             setTodayHabits(response.data);
-            setDailyProgress(response.data.filter((habit) => habit.done).length / response.data.length);
+            setDailyProgress(response.data.length === 0 ? 0 : response.data.filter((habit) => habit.done).length / response.data.length);
         });
         promise.catch((error) => console.log(error.response.data.message));
     } , [loadHabits]);

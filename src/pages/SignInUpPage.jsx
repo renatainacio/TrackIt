@@ -5,6 +5,7 @@ import { useContext, useState } from "react"
 import axios from 'axios'
 import { ThreeDots } from  'react-loader-spinner'
 import AuthContext from "../context/AuthContext"
+import { useEffect } from "react"
 
 export default function SignInUpPage(props) {
     const [email, setEmail] = useState("");
@@ -16,6 +17,14 @@ export default function SignInUpPage(props) {
     const loginURL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login";
     const [user, setUser] = useContext(AuthContext);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const localUser = JSON.parse(localStorage.getItem("user"));
+        if (localUser) {
+            setUser(localUser);
+            navigate("/hoje");
+        }
+    }, []);
 
     function login(e) {
         e.preventDefault();
@@ -33,6 +42,7 @@ export default function SignInUpPage(props) {
             navigate("/hoje");
             console.log(response.data);
             setUser(response.data);
+            localStorage.setItem("user", JSON.stringify(response.data));
         });
     }
 

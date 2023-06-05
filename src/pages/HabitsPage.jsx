@@ -103,7 +103,7 @@ export default function HabitsPage() {
                                 }} selected={selectedDays.includes(index)} disabled={loading} data-test="habit-day">{dow}</SCDoW>)}
                         </SCDaysOfWeek>
                     <SCNewHabitButtons>
-                        <SCHabitButton type="reset" btn="cancel" onClick={() => {setNewHabit(false)}} data-test="habit-create-cancel-btn">Cancelar</SCHabitButton>
+                        <SCHabitButton type="reset" btn="cancel" onClick={() => {setNewHabit(false)}} data-test="habit-create-cancel-btn" disabled={loading}>Cancelar</SCHabitButton>
                         <SCHabitButton btn="save" disabled={loading} data-test="habit-create-save-btn">
                             {loading ? 
                             <ThreeDots
