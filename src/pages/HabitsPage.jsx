@@ -131,6 +131,7 @@ const SCMyHabits = styled.div`
         height: 35px;
         font-size: 27px;
         line-height: 34px;
+        color: #FFFFFF;
     }
 `
 
