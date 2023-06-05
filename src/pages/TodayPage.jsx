@@ -60,8 +60,8 @@ export default function TodayPage() {
                 <SCTodayHabit key={habit.id} data-test="today-habit-container">
                     <SCHabitDetails>
                         <h3 data-test="today-habit-name">{habit.name}</h3>
-                        <p data-test="today-habit-sequence">Sequência atual: <SCDays highlight={habit.done}>{habit.currentSequence} dias</SCDays></p>
-                        <p data-test="today-habit-record">Seu recorde: <SCDays highlight={habit.highestSequence === habit.currentSequence && habit.highestSequence !== 0}>{habit.highestSequence} dias</SCDays></p>
+                        <p>Sequência atual: <SCDays highlight={habit.done} data-test="today-habit-sequence">{habit.currentSequence} dias</SCDays></p>
+                        <p>Seu recorde: <SCDays highlight={habit.highestSequence === habit.currentSequence && habit.highestSequence !== 0} data-test="today-habit-record">{habit.highestSequence} dias</SCDays></p>
                     </SCHabitDetails>
                     <SCMarkButton onClick={() => markAsDone(habit)} done={habit.done} data-test="today-habit-check-btn"><ion-icon name="checkmark-outline"></ion-icon></SCMarkButton>
                 </SCTodayHabit>
