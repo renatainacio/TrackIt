@@ -6,8 +6,6 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { confirmAlert } from "react-confirm-alert";
-import 'react-confirm-alert/src/react-confirm-alert.css';
 import { ThreeDots } from  'react-loader-spinner';
 
 export default function HabitsPage() {
@@ -33,22 +31,11 @@ export default function HabitsPage() {
         promise.then(() => setLoadHabits(loadHabits + 1));
         promise.catch((error) => alert(error.response.data.message));
     }
-
+    
     function confirmDeletion(habit) {
-        const options = {
-            title: 'Confirmar exclusão',
-            message: `Tem certeza que deseja excluir o hábito ${habit.name}?`,
-            buttons: [
-              {
-                label: 'Sim',
-                onClick: () => deleteHabit(habit)
-              },
-              {
-                label: 'Não',
-              }
-            ],
-          };
-        confirmAlert(options);
+        console.log("confirmar");
+        if(window.confirm(`Tem certeza que deseja deletar o hábito ${habit.name}?`)) 
+        deleteHabit(habit);
     }
 
     useEffect( () => {
