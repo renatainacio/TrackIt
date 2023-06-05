@@ -122,11 +122,11 @@ export default function HabitsPage() {
                     habits.map((habit) => 
                     <SCHabitItem key={habit.id} data-test="habit-container">
                         <SCHabitHeader>
-                            <h3>{habit.name}</h3>
-                            <ion-icon name="trash-outline" onClick={() => confirmDeletion(habit)}></ion-icon>
+                            <h3 data-test="habit-name">{habit.name}</h3>
+                            <ion-icon name="trash-outline" onClick={() => confirmDeletion(habit)} data-test="habit-delete-btn"></ion-icon>
                         </SCHabitHeader>
                         <SCDaysOfWeek>
-                            {daysOfWeek.map((dow, index) => <SCDoW key={index} type="button" disabled selected={habit.days.includes(index)}>{dow}</SCDoW>)}
+                            {daysOfWeek.map((dow, index) => <SCDoW key={index} type="button" disabled selected={habit.days.includes(index)} data-test="habit-day">{dow}</SCDoW>)}
                         </SCDaysOfWeek>
                     </SCHabitItem>
                 )}

@@ -50,20 +50,20 @@ export default function TodayPage() {
             <Top />
             <SCContent>
                 <SCTodayHeader>
-                    <h1>{dayOfWeek[dayjs().day()]}, {dayjs().format('DD/MM')}</h1>
+                    <h1 data-test="today">{dayOfWeek[dayjs().day()]}, {dayjs().format('DD/MM')}</h1>
                     {dailyProgress === 0 ? 
-                    <h2>Nenhum hábito concluído ainda</h2> :
-                    <h2>{Math.round(dailyProgress * 100, 0)}% dos hábitos concluídos</h2>
+                    <h2 data-test="today-counter">Nenhum hábito concluído ainda</h2> :
+                    <h2 data-test="today-counter">{Math.round(dailyProgress * 100, 0)}% dos hábitos concluídos</h2>
                     }
                 </SCTodayHeader>
                 {todayHabits.map((habit) => 
-                <SCTodayHabit key={habit.id}>
+                <SCTodayHabit key={habit.id} data-test="today-habit-container">
                     <SCHabitDetails>
-                        <h3>{habit.name}</h3>
-                        <p>Sequência atual: <SCDays highlight={habit.done}>{habit.currentSequence} dias</SCDays></p>
-                        <p>Seu recorde: <SCDays highlight={habit.highestSequence === habit.currentSequence && habit.highestSequence !== 0}>{habit.highestSequence} dias</SCDays></p>
+                        <h3 data-test="today-habit-name">{habit.name}</h3>
+                        <p data-test="today-habit-sequence">Sequência atual: <SCDays highlight={habit.done}>{habit.currentSequence} dias</SCDays></p>
+                        <p data-test="today-habit-record">Seu recorde: <SCDays highlight={habit.highestSequence === habit.currentSequence && habit.highestSequence !== 0}>{habit.highestSequence} dias</SCDays></p>
                     </SCHabitDetails>
-                    <SCMarkButton onClick={() => markAsDone(habit)} done={habit.done}><ion-icon name="checkmark-outline"></ion-icon></SCMarkButton>
+                    <SCMarkButton onClick={() => markAsDone(habit)} done={habit.done} data-test="today-habit-check-btn"><ion-icon name="checkmark-outline"></ion-icon></SCMarkButton>
                 </SCTodayHabit>
                 )}
             </SCContent>
