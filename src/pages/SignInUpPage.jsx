@@ -120,6 +120,9 @@ const SCForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
+    button {
+        color: #FFFFFF;
+    }
 `
 
 const SCLink = styled.p`
