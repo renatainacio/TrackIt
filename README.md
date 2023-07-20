@@ -1,4 +1,5 @@
-# TrackIt <img src=https://github.com/renatainacio/TrackIt/blob/main/src/assets/logo.png>
+# TrackIt  <img src="https://github.com/renatainacio/TrackIt/blob/main/src/assets/logo.png" width=40px>
+
 An app to track habits
 
 # Overview
